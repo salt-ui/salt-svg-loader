@@ -2,12 +2,12 @@
 
 > A Webpack Loader to turn SVGs into React Components
 
-Fork from: <https://github.com/yanbingbing/svg2react-loader>, and make it simple.
+Fork from: <https://github.com/yanbingbing/svg2react-loader>, and make some change.
 
 ## Installation
 
 ```sh
-npm install svg2react-loader
+tnpm install @ali/tingle-svg2react-loader
 ```
 
 ##Usage
