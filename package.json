@@ -1,7 +1,7 @@
 {
-  "name": "svg2react-loader",
-  "version": "1.0.3",
-  "fullname": "SVG to React Loader",
+  "name": "@ali/tingle-svg2react-loader",
+  "version": "1.0.0",
+  "fullname": "SVG to React Loader for tingle",
   "description": "A Webpack Loader to turn SVGs into React Components",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yanbingbing/svg2react-loader.git"
+    "url": "git@gitlab.alibaba-inc.com:tingle-ui/tingle-svg2react-loader.git"
   },
   "keywords": [
     "webpack",
@@ -19,9 +19,10 @@
     "webpack-loader"
   ],
   "dependencies": {
-    "xml2js": "^0.4",
+    "classnames": "^2.2.5",
+    "loader-utils": "^0.2",
     "lodash": "^3.10",
-    "loader-utils": "^0.2"
+    "xml2js": "^0.4"
   },
   "devDependencies": {
     "react": "^0.14",
@@ -38,7 +39,7 @@
   "author": "onbing",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yanbingbing/svg2react-loader/issues"
+    "url": "http://gitlab.alibaba-inc.com/tingle-ui/tingle-svg2react-loader/issues"
   },
-  "homepage": "https://github.com/yanbingbing/svg2react-loader#readme"
+  "homepage": "http://gitlab.alibaba-inc.com/tingle-ui/tingle-svg2react-loader"
 }

@@ -1,8 +1,8 @@
-# SVG to React Loader [![](http://img.shields.io/npm/v/svg2react-loader.svg)](https://npmjs.org/package/svg2react-loader)
+# SVG to React Loader [![][tnpm-image]][tnpm-url]
 
 > A Webpack Loader to turn SVGs into React Components
 
-Fork from: <https://github.com/jhamlet/svg-react-loader>, and make it simple.
+Fork from: <https://github.com/yanbingbing/svg2react-loader>, and make it simple.
 
 ## Installation
 
@@ -14,7 +14,7 @@ npm install svg2react-loader
 
 ```js
 var React = require('react');
-var Icon = require('babel!svg2react!./my-icon.svg?name=Icon');
+var Icon = require('babel!tingle-svg2react!./my-icon.svg?name=Icon');
 
 module.exports = React.createClass({
     render () {
@@ -22,3 +22,6 @@ module.exports = React.createClass({
     }
 });
 ```
+
+[tnpm-image]: http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-svg2react-loader.svg?style=flat-square
+[tnpm-url]: http://web.npm.alibaba-inc.com/package/@ali/tingle-svg2react-loader

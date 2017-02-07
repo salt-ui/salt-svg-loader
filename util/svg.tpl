@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react';
+import classnames from 'classnames';
 
 module.exports = React.createClass({
 
@@ -9,10 +10,17 @@ module.exports = React.createClass({
     },
 
     render () {
-        var props = this.props;
+        const {onClick, className, ...others} = this.props;
 
-        return <svg {...props}>
-            <%= innerXml %>
-        </svg>;
+        return (
+            <div onClick={onClick} className={classnames('t-icon t-svg', {
+               [className]: !!className
+            })}>
+                <svg {...others}>
+                    <%= innerXml %>
+                </svg>
+                <div className="t-icon-mask"></div>
+            </div>
+        );
     }
 });
