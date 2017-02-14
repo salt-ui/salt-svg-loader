@@ -1,5 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
+import svg4everybody from 'svg4everybody';
+
+const webkitUA = /\bAppleWebKit\/(\d+)\b/;
 
 module.exports = React.createClass({
 
@@ -7,6 +10,13 @@ module.exports = React.createClass({
 
     getDefaultProps () {
         return <%= JSON.stringify(defaultProps) %>;
+    },
+
+    componentDidMount() {
+        const webkitUAVersion = (navigator.userAgent.match(webkitUA) || [])[1];
+        svg4everybody({
+            polyfill: webkitUAVersion === '600' || webkitUAVersion < 537,
+        });
     },
 
     render () {
