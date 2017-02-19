@@ -23,14 +23,14 @@ module.exports = React.createClass({
         const {onClick, className, ...others} = this.props;
 
         return (
-            <div onClick={onClick} className={classnames('t-icon t-svg', {
+            <span onClick={onClick} className={classnames('t-icon t-svg', {
                [className]: !!className
             })}>
                 <svg {...others}>
                     <%= innerXml %>
                 </svg>
                 <div className="t-icon-mask"></div>
-            </div>
+            </span>
         );
     }
 });

@@ -8,6 +8,7 @@ var assign = require('lodash/object/assign');
 var keys = require('lodash/object/keys');
 var sanitize = require('./util/sanitize');
 var Tmpl;
+// require('./util/svg-icon.css');
 
 function readTemplate (callback, filepath) {
     fs.readFile(filepath, 'utf8', function (error, contents) {

@@ -14,7 +14,7 @@ tnpm install @ali/tingle-svg2react-loader
 
 ```js
 var React = require('react');
-var Icon = require('babel!tingle-svg2react!./my-icon.svg?name=Icon');
+var Icon = require('babel!@ali/tingle-svg2react-loader!./my-icon.svg?name=Icon');
 
 module.exports = React.createClass({
     render () {
