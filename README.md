@@ -7,14 +7,14 @@ Fork from: <https://github.com/yanbingbing/svg2react-loader>, and make some chan
 ## Installation
 
 ```sh
-tnpm install @ali/tingle-svg2react-loader
+tnpm install salt-svg-loader
 ```
 
 ##Usage
 
 ```js
 var React = require('react');
-var Icon = require('babel!@ali/tingle-svg2react-loader!./my-icon.svg?name=Icon');
+var Icon = require('babel!salt-svg!./my-icon.svg?name=Icon');
 
 module.exports = React.createClass({
     render () {
@@ -23,5 +23,5 @@ module.exports = React.createClass({
 });
 ```
 
-[tnpm-image]: http://web.npm.alibaba-inc.com/badge/v/@ali/tingle-svg2react-loader.svg?style=flat-square
-[tnpm-url]: http://web.npm.alibaba-inc.com/package/@ali/tingle-svg2react-loader
+[tnpm-image]:https://img.shields.io/npm/v/salt-svg-loader.svg?style=flat-square
+[tnpm-url]:https://www.npmjs.com/package/salt-svg-loader

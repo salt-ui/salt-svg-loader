@@ -1,7 +1,7 @@
 {
-  "name": "@ali/tingle-svg2react-loader",
-  "version": "1.0.1",
-  "fullname": "SVG to React Loader for tingle",
+  "name": "salt-svg-loader",
+  "version": "1.0.0",
+  "fullname": "SVG to React Loader for salt-ui",
   "description": "A Webpack Loader to turn SVGs into React Components",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.alibaba-inc.com:tingle-ui/tingle-svg2react-loader.git"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
+    "url": "git@github.com:salt-ui/salt-svg-loader.git"
   },
   "keywords": [
     "webpack",
@@ -40,10 +37,10 @@
     "mocha": "^2.0",
     "should": "^7.0"
   },
-  "author": "onbing",
-  "license": "MIT",
+  "author": "quanyun.mqy",
+  "license": "ISC",
   "bugs": {
-    "url": "http://gitlab.alibaba-inc.com/tingle-ui/tingle-svg2react-loader/issues"
+    "url": "https://github.com/salt-ui/salt-svg-loader/issues"
   },
-  "homepage": "http://gitlab.alibaba-inc.com/tingle-ui/tingle-svg2react-loader"
+  "homepage": "https://github.com/salt-ui/salt-svg-loader#readme"
 }
