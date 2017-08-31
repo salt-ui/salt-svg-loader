@@ -6,26 +6,26 @@ import template from 'lodash/string/template';
 import camelCase from 'lodash/string/camelCase';
 import assign from 'lodash/object/assign';
 import keys from 'lodash/object/keys';
-import SVGO from 'svgo';
-// import sanitize from './util/sanitize';
+// import SVGO from 'svgo';
+import sanitize from './util/sanitize';
 
-const svgo = new SVGO({
-  removeTitle: true,
-  cleanupNumericValues: true,
-  cleanupIDs: true,
-  sortAttrs: true,
-  removeStyleElement: true,
-  removeScriptElement: true,
-});
+// const svgo = new SVGO({
+//   removeTitle: true,
+//   cleanupNumericValues: true,
+//   cleanupIDs: true,
+//   sortAttrs: true,
+//   removeStyleElement: true,
+//   removeScriptElement: true,
+// });
 
-let Tmpl;
+let tmpl;
 
 function readTemplate(callback, filepath) {
-  fs.readFile(filepath, 'utf8', function (error, contents) {
+  fs.readFile(filepath, 'utf8', (error, contents) => {
     if (error) {
       throw error;
     }
-    Tmpl = template(contents);
+    tmpl = template(contents);
     callback();
   });
 }
@@ -41,18 +41,18 @@ function renderJsx(displayName, xml, callback) {
   const tagName = keys(xml)[0];
   const root = xml[tagName];
 
-  // var props = assign(sanitize(root).$ || {});
-  const props = assign(root.$ || {});
+  const props = assign(sanitize(root).$ || {});
+  // const props = assign(root.$ || {});
 
   delete props.id;
 
-  const xmlBuilder = new xml2js.Builder({headless: true});
+  const xmlBuilder = new xml2js.Builder({ headless: true });
   const xmlSrc = xmlBuilder.buildObject(xml);
 
-  const component = Tmpl({
-    displayName: displayName,
+  const component = tmpl({
+    displayName,
     defaultProps: props,
-    innerXml: xmlSrc.split(/\n/).slice(1, -1).join('\n')
+    innerXml: xmlSrc.split(/\n/).slice(1, -1).join('\n'),
   });
 
   callback(null, component);
@@ -78,23 +78,20 @@ export default function (source) {
   const displayName = rsrcQuery.name || query.name || getName(rsrcPath);
 
   const render = function () {
-
-    svgo.optimize(source, function (result) {
-
-      const xmlParser = new xml2js.Parser();
-      xmlParser.parseString(result.data, function (error, xml) {
-        if (error) {
-          return callback(error);
-        }
-
-        renderJsx(displayName, xml, callback);
-      });
+    // svgo.optimize(source, (result) => {
+    const xmlParser = new xml2js.Parser();
+    xmlParser.parseString(source, (error, xml) => {
+      if (error) {
+        return callback(error);
+      }
+      return renderJsx(displayName, xml, callback);
     });
+    // });
   };
 
-  if (Tmpl) {
+  if (tmpl) {
     render();
   } else {
     readTemplate(render, tmplPath);
   }
-};
+}

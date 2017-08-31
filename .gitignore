@@ -3,7 +3,6 @@ node_modules
 design/
 .idea/
 docs/
-dist/
 demo/dist/
 src/*.css
 src/*.css.map
