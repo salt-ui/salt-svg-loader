@@ -118,3 +118,4 @@ function sanitize(xmlNode, namespaces) {
 
   return xmlNode;
 }
+module.exports = exports['default'];

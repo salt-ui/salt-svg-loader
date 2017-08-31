@@ -128,3 +128,4 @@ function renderJsx(displayName, xml, callback) {
 /**
  * @param {String} source
  */
+module.exports = exports['default'];
