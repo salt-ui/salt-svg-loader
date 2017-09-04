@@ -6,17 +6,27 @@ import template from 'lodash/string/template';
 import camelCase from 'lodash/string/camelCase';
 import assign from 'lodash/object/assign';
 import keys from 'lodash/object/keys';
-// import SVGO from 'svgo';
-import sanitize from './util/sanitize';
+import SVGO from 'svgo';
+// import sanitize from './util/sanitize';
 
-// const svgo = new SVGO({
-//   removeTitle: true,
-//   cleanupNumericValues: true,
-//   cleanupIDs: true,
-//   sortAttrs: true,
-//   removeStyleElement: true,
-//   removeScriptElement: true,
-// });
+const svgo = new SVGO({
+  plugins: [
+    // { removeXMLNS: true },
+    { removeTitle: true },
+    { cleanupNumericValues: true },
+    {
+      cleanupIDs: {
+        remove: true,
+        minify: true,
+        force: true,
+      },
+    },
+    { sortAttrs: true },
+    { removeStyleElement: true },
+    { removeScriptElement: true },
+    { removeDimensions: true },
+  ],
+});
 
 let tmpl;
 
@@ -41,8 +51,8 @@ function renderJsx(displayName, xml, callback) {
   const tagName = keys(xml)[0];
   const root = xml[tagName];
 
-  const props = assign(sanitize(root).$ || {});
-  // const props = assign(root.$ || {});
+  // const props = assign(sanitize(root).$ || {});
+  const props = assign(root.$ || {});
 
   delete props.id;
 
@@ -78,15 +88,15 @@ export default function (source) {
   const displayName = rsrcQuery.name || query.name || getName(rsrcPath);
 
   const render = function () {
-    // svgo.optimize(source, (result) => {
-    const xmlParser = new xml2js.Parser();
-    xmlParser.parseString(source, (error, xml) => {
-      if (error) {
-        return callback(error);
-      }
-      return renderJsx(displayName, xml, callback);
+    svgo.optimize(source, (result) => {
+      const xmlParser = new xml2js.Parser();
+      xmlParser.parseString(result.data, (error, xml) => {
+        if (error) {
+          return callback(error);
+        }
+        return renderJsx(displayName, xml, callback);
+      });
     });
-    // });
   };
 
   if (tmpl) {

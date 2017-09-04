@@ -19,15 +19,15 @@ exports.default = function (source) {
   var displayName = rsrcQuery.name || query.name || getName(rsrcPath);
 
   var render = function render() {
-    // svgo.optimize(source, (result) => {
-    var xmlParser = new _xml2js2.default.Parser();
-    xmlParser.parseString(source, function (error, xml) {
-      if (error) {
-        return callback(error);
-      }
-      return renderJsx(displayName, xml, callback);
+    svgo.optimize(source, function (result) {
+      var xmlParser = new _xml2js2.default.Parser();
+      xmlParser.parseString(result.data, function (error, xml) {
+        if (error) {
+          return callback(error);
+        }
+        return renderJsx(displayName, xml, callback);
+      });
     });
-    // });
   };
 
   if (tmpl) {
@@ -69,24 +69,27 @@ var _keys = require('lodash/object/keys');
 
 var _keys2 = _interopRequireDefault(_keys);
 
-var _sanitize = require('./util/sanitize');
+var _svgo = require('svgo');
 
-var _sanitize2 = _interopRequireDefault(_sanitize);
+var _svgo2 = _interopRequireDefault(_svgo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const svgo = new SVGO({
-//   removeTitle: true,
-//   cleanupNumericValues: true,
-//   cleanupIDs: true,
-//   sortAttrs: true,
-//   removeStyleElement: true,
-//   removeScriptElement: true,
-// });
+// import sanitize from './util/sanitize';
+
+var svgo = new _svgo2.default({
+  plugins: [
+  // { removeXMLNS: true },
+  { removeTitle: true }, { cleanupNumericValues: true }, {
+    cleanupIDs: {
+      remove: true,
+      minify: true,
+      force: true
+    }
+  }, { sortAttrs: true }, { removeStyleElement: true }, { removeScriptElement: true }, { removeDimensions: true }]
+});
 
 var tmpl = void 0;
-// import SVGO from 'svgo';
-
 
 function readTemplate(callback, filepath) {
   _fs2.default.readFile(filepath, 'utf8', function (error, contents) {
@@ -108,13 +111,15 @@ function renderJsx(displayName, xml, callback) {
   var tagName = (0, _keys2.default)(xml)[0];
   var root = xml[tagName];
 
-  var props = (0, _assign2.default)((0, _sanitize2.default)(root).$ || {});
-  // const props = assign(root.$ || {});
+  // const props = assign(sanitize(root).$ || {});
+  var props = (0, _assign2.default)(root.$ || {});
 
   delete props.id;
 
   var xmlBuilder = new _xml2js2.default.Builder({ headless: true });
   var xmlSrc = xmlBuilder.buildObject(xml);
+
+  console.log(props);
 
   var component = tmpl({
     displayName,
