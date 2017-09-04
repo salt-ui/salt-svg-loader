@@ -1,7 +1,7 @@
 /*globals describe, it*/
 var react  = require('react');
 var ReactDOMServer = require('react-dom/server');
-var loader = require('../index');
+var loader = require('../src/index');
 var babel  = require('babel-core');
 var fs     = require('fs');
 var path   = require('path');
