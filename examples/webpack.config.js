@@ -1,12 +1,10 @@
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: require.resolve('./mass.svg'),
+  entry: './index.js',
   output: {
-    // path: __dirname + '/examples',
-    filename: 'pure.js',
+    filename: '[name].js',
   },
-  // devtool: 'eval',
   module: {
     loaders: [
       {
