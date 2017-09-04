@@ -119,8 +119,6 @@ function renderJsx(displayName, xml, callback) {
   var xmlBuilder = new _xml2js2.default.Builder({ headless: true });
   var xmlSrc = xmlBuilder.buildObject(xml);
 
-  console.log(props);
-
   var component = tmpl({
     displayName,
     defaultProps: props,
