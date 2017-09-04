@@ -1,4 +1,4 @@
-1.1.0 / 2017-8-31
+1.1.0 / 2017-9-4
 =====================
 feat: remove svg4everybody
 feat: import svgo
