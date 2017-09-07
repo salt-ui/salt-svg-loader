@@ -18,7 +18,6 @@ module.exports = React.createClass({
             <div
                 onClick={onClick}
                 style={{
-                    position: 'relative',
                     display: 'inline-block',
                     lineHeight: 0
                 }}
@@ -26,19 +25,21 @@ module.exports = React.createClass({
                    [className]: !!className
                 })}
             >
-                <svg {...others}>
-                    <%= innerXml %>
-                </svg>
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%'
-                    }}
-                    className="t-icon-mask"
-                ></div>
+                <div style={{ position: 'relative' }}>
+                    <svg {...others}>
+                        <%= innerXml %>
+                    </svg>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%'
+                        }}
+                        className="t-icon-mask"
+                    ></div>
+                </div>
             </div>
         );
     }
