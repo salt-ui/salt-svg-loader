@@ -25,6 +25,7 @@ const svgo = new SVGO({
     { removeStyleElement: true },
     { removeScriptElement: true },
     { removeDimensions: true },
+    { removeAttrs: 'svg:class' },
   ],
 });
 
