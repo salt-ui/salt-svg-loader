@@ -86,7 +86,11 @@ var svgo = new _svgo2.default({
       minify: true,
       force: true
     }
-  }, { sortAttrs: true }, { removeStyleElement: true }, { removeScriptElement: true }, { removeDimensions: true }]
+  }, { sortAttrs: true }, { removeStyleElement: true }, { removeScriptElement: true }, { removeDimensions: true }, {
+    removeAttrs: {
+      attrs: 'class'
+    }
+  }]
 });
 
 var tmpl = void 0;

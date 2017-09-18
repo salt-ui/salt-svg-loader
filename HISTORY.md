@@ -1,3 +1,7 @@
+1.1.3 / 2017-9-18
+=====================
+`fix` remove all class
+
 1.1.2 / 2017-9-18
 =====================
 `fix` remove class on svg element
