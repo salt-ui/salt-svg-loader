@@ -1,16 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const webkitUA = /\bAppleWebKit\/(\d+)\b/;
-
-module.exports = React.createClass({
-
-    displayName: <%= JSON.stringify(displayName) %>,
-
-    getDefaultProps () {
-        return <%= JSON.stringify(defaultProps) %>;
-    },
-
+export default class Icon extends React.Component {
+    static displayName = <%= JSON.stringify(displayName) %>;
+    static defaultProps = <%= JSON.stringify(defaultProps) %>;
     render () {
         const {onClick, className, ...others} = this.props;
 
@@ -19,7 +12,7 @@ module.exports = React.createClass({
                 onClick={onClick}
                 style={{
                     display: 'inline-block',
-                    lineHeight: 0
+                    lineHeight: 0,
                 }}
                 className={classnames('t-icon t-svg', {
                    [className]: !!className
@@ -43,4 +36,4 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}

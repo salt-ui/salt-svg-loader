@@ -88,7 +88,7 @@ var svgo = new _svgo2.default({
     }
   }, { sortAttrs: true }, { removeStyleElement: true }, { removeScriptElement: true }, { removeDimensions: true }, {
     removeAttrs: {
-      attrs: 'class'
+      attrs: ['class', 'xmlns', 'pointer-events']
     }
   }]
 });
@@ -119,6 +119,7 @@ function renderJsx(displayName, xml, callback) {
   var props = (0, _assign2.default)(root.$ || {});
 
   delete props.id;
+  delete props['xmlns:xlink'];
 
   var xmlBuilder = new _xml2js2.default.Builder({ headless: true });
   var xmlSrc = xmlBuilder.buildObject(xml);
@@ -128,7 +129,6 @@ function renderJsx(displayName, xml, callback) {
     defaultProps: props,
     innerXml: xmlSrc.split(/\n/).slice(1, -1).join('\n')
   });
-
   callback(null, component);
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 
 export default class Icon extends React.Component {
-    static displayName = <%= JSON.stringify(displayName) %>;
-    static defaultProps = <%= JSON.stringify(defaultProps) %>;
+    static displayName = "Styles";
+    static defaultProps = {"preserveAspectRatio":"none","viewBox":"0 0 50 50"};
     render () {
         const {onClick, className, ...others} = this.props;
 
@@ -20,7 +20,7 @@ export default class Icon extends React.Component {
             >
                 <div style={{ position: 'relative' }}>
                     <svg {...others}>
-                        <%= innerXml %>
+                          <path d="M14.5 18v2h21v-2h-21zm0 8h21v-2h-21v2zm0 6h21v-2h-21v2z"/>
                     </svg>
                     <div
                         style={{

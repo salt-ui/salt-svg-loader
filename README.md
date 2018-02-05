@@ -1,4 +1,4 @@
-# SVG to React Loader [![][tnpm-image]][tnpm-url]
+# SVG to React Loader [![][npm-image]][npm-url]
 
 A Webpack Loader to convert SVG into React Component
 
@@ -23,5 +23,5 @@ module.exports = React.createClass({
 
 > Fork [svg2react-loader](https://github.com/yanbingbing/svg2react-loader), and has been reconstructed and optimized.
 
-[tnpm-image]:https://img.shields.io/npm/v/salt-svg-loader.svg?style=flat-square
-[tnpm-url]:https://www.npmjs.com/package/salt-svg-loader
+[npm-image]:https://img.shields.io/npm/v/salt-svg-loader.svg?style=flat-square
+[npm-url]:https://www.npmjs.com/package/salt-svg-loader

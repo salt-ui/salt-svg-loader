@@ -27,7 +27,7 @@ const svgo = new SVGO({
     { removeDimensions: true },
     {
       removeAttrs: {
-        attrs: 'class',
+        attrs: ['class', 'xmlns', 'pointer-events'],
       },
     },
   ],
@@ -59,7 +59,9 @@ function renderJsx(displayName, xml, callback) {
   // const props = assign(sanitize(root).$ || {});
   const props = assign(root.$ || {});
 
+
   delete props.id;
+  delete props['xmlns:xlink'];
 
   const xmlBuilder = new xml2js.Builder({ headless: true });
   const xmlSrc = xmlBuilder.buildObject(xml);
@@ -69,7 +71,6 @@ function renderJsx(displayName, xml, callback) {
     defaultProps: props,
     innerXml: xmlSrc.split(/\n/).slice(1, -1).join('\n'),
   });
-
   callback(null, component);
 }
 
