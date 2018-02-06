@@ -7,31 +7,10 @@ import camelCase from 'lodash/string/camelCase';
 import assign from 'lodash/object/assign';
 import keys from 'lodash/object/keys';
 import SVGO from 'svgo';
-// import sanitize from './util/sanitize';
+import toCamel from 'to-camel-case';
+import svgoConfig from './svgoConfig';
 
-const svgo = new SVGO({
-  plugins: [
-    // { removeXMLNS: true },
-    { removeTitle: true },
-    { cleanupNumericValues: true },
-    {
-      cleanupIDs: {
-        remove: true,
-        minify: true,
-        force: true,
-      },
-    },
-    { sortAttrs: true },
-    { removeStyleElement: true },
-    { removeScriptElement: true },
-    { removeDimensions: true },
-    {
-      removeAttrs: {
-        attrs: ['class', 'xmlns', 'pointer-events'],
-      },
-    },
-  ],
-});
+const svgo = new SVGO(svgoConfig);
 
 let tmpl;
 
@@ -61,7 +40,6 @@ function renderJsx(displayName, xml, callback) {
 
 
   delete props.id;
-  delete props['xmlns:xlink'];
 
   const xmlBuilder = new xml2js.Builder({ headless: true });
   const xmlSrc = xmlBuilder.buildObject(xml);
@@ -95,8 +73,14 @@ export default function (source) {
 
   const render = function () {
     svgo.optimize(source, (result) => {
-      const xmlParser = new xml2js.Parser();
-      xmlParser.parseString(result.data, (error, xml) => {
+      xml2js.parseString(result.data, {
+        attrNameProcessors: [(name) => {
+          if (/-/.test(name)) {
+            return toCamel(name);
+          }
+          return name;
+        }],
+      }, (error, xml) => {
         if (error) {
           return callback(error);
         }

@@ -21,7 +21,7 @@
                 background: url('foo/fux.jpg');
             }
         </style>
-        <path class="st0" d="M14.5,18v2h21v-2H14.5z M14.5,26h21v-2h-21V26z M14.5,32h21v-2h-21V32z"/>
+        <path fill-opacity="0.9" class="st0" d="M14.5,18v2h21v-2H14.5z M14.5,26h21v-2h-21V26z M14.5,32h21v-2h-21V32z"/>
     </g>
 </g>
 </svg>

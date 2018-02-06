@@ -20,8 +20,14 @@ exports.default = function (source) {
 
   var render = function render() {
     svgo.optimize(source, function (result) {
-      var xmlParser = new _xml2js2.default.Parser();
-      xmlParser.parseString(result.data, function (error, xml) {
+      _xml2js2.default.parseString(result.data, {
+        attrNameProcessors: [function (name) {
+          if (/-/.test(name)) {
+            return (0, _toCamelCase2.default)(name);
+          }
+          return name;
+        }]
+      }, function (error, xml) {
         if (error) {
           return callback(error);
         }
@@ -73,25 +79,17 @@ var _svgo = require('svgo');
 
 var _svgo2 = _interopRequireDefault(_svgo);
 
+var _toCamelCase = require('to-camel-case');
+
+var _toCamelCase2 = _interopRequireDefault(_toCamelCase);
+
+var _svgoConfig = require('./svgoConfig');
+
+var _svgoConfig2 = _interopRequireDefault(_svgoConfig);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import sanitize from './util/sanitize';
-
-var svgo = new _svgo2.default({
-  plugins: [
-  // { removeXMLNS: true },
-  { removeTitle: true }, { cleanupNumericValues: true }, {
-    cleanupIDs: {
-      remove: true,
-      minify: true,
-      force: true
-    }
-  }, { sortAttrs: true }, { removeStyleElement: true }, { removeScriptElement: true }, { removeDimensions: true }, {
-    removeAttrs: {
-      attrs: ['class', 'xmlns', 'pointer-events']
-    }
-  }]
-});
+var svgo = new _svgo2.default(_svgoConfig2.default);
 
 var tmpl = void 0;
 
@@ -119,7 +117,6 @@ function renderJsx(displayName, xml, callback) {
   var props = (0, _assign2.default)(root.$ || {});
 
   delete props.id;
-  delete props['xmlns:xlink'];
 
   var xmlBuilder = new _xml2js2.default.Builder({ headless: true });
   var xmlSrc = xmlBuilder.buildObject(xml);

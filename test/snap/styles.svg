@@ -20,7 +20,7 @@ export default class Icon extends React.Component {
             >
                 <div style={{ position: 'relative' }}>
                     <svg {...others}>
-                          <path d="M14.5 18v2h21v-2h-21zm0 8h21v-2h-21v2zm0 6h21v-2h-21v2z"/>
+                          <path fillOpacity=".9" d="M14.5 18v2h21v-2h-21zm0 8h21v-2h-21v2zm0 6h21v-2h-21v2z"/>
                     </svg>
                     <div
                         style={{

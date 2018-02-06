@@ -24,4 +24,19 @@ describe('something', () => {
       resourcePath: 'normal.svg',
     });
   });
+
+  it('handle slug-case attr name correctly', (done) => {
+    const filename = './svg/styles.svg';
+    invoke(read(filename), {
+      callback(error, result) {
+        if (error) {
+          throw error;
+        }
+        const snap = fs.readFileSync(path.join(__dirname, './snap/styles.svg'));
+        expect(result).to.be.equal(snap.toString());
+        done();
+      },
+      resourcePath: 'styles.svg',
+    });
+  });
 });

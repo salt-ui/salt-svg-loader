@@ -2,6 +2,12 @@
 
 A Webpack Loader to convert SVG into React Component
 
+## Feature
+
+* SVG optimazation using [SVGO](https://github.com/svg/svgo), default config see [here](https://github.com/salt-ui/salt-svg-loader/blob/master/src/svgoConfig.js)
+* transform svg slug attr name (like `fill-opacity`) to camel case (like `fillOpacity`)
+* generate shadow mask covering svg to optimize svg icon clicking experience
+
 ## Installation
 
 ```sh
